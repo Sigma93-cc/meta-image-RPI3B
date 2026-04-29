@@ -5,7 +5,7 @@ LICENSE = "MIT"
 DEPENDS = "qtbase boost"
 
 SRC_URI = "git://github.com/Sigma93-cc/systemAnalyzator.git;protocol=https;branch=develop"
-SRCREV = "23977296b2d500e0fed4ddc93bb17285be65ce34"
+SRCREV = "93c431c8bc325475e2594b236c3f0d145950fdc6"
 
 PV = "1.0.0+git${SRCPV}"
 
