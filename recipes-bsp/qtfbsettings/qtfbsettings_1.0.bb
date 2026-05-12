@@ -4,11 +4,12 @@ LICENSE = "CLOSED"
 
 inherit allarch
 
-FILESEXTRAPATHS:prepend := ":${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 SRC_URI = " \
     file://qtplatform.conf \
-    file://qtplatform.sh"
+    file://qtplatform.sh \
+"
 
 S = "${WORKDIR}"
 

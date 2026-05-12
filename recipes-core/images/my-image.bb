@@ -7,9 +7,18 @@ IMAGE_BOOT_FILES:append = " waveshare35b-v2.dtbo;overlays/waveshare35b-v2.dtbo"
 
 IMAGE_INSTALL:append = " \
     kernel-module-ads7846 \
+    util-linux-lsblk \
+    util-linux-findmnt \
     qtbase \
     qtbase-plugins \
     boost \
     systemanalyzer \
     qtfbsettings \
+    swupdate \
+    libubootenv-bin \
+    u-boot \
 "
+
+IMAGE_FSTYPES:append = " wic"
+
+WKS_FILE = "image.wks"
