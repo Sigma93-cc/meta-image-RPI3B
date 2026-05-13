@@ -20,7 +20,7 @@ software = {
             swupdate.set_bootenv('upgrade_available', '1')
             swupdate.set_bootenv('bootcount',         '0')
 
-            return true, true   -- (success, install)
+            return true, image   -- (success, install)
         end
     ";
 

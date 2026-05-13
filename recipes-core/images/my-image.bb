@@ -23,5 +23,3 @@ IMAGE_INSTALL:append = " \
 IMAGE_FSTYPES:append = " wic ext4.gz"
 IMAGE_FSTYPES:remove = "ext3"
 WKS_FILE = "image.wks"
-
-do_rootfs[vardeps] += "DISTRO_VERSION"
