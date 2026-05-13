@@ -1,0 +1,38 @@
+software = {
+    version = "@@DISTRO_VERSION@@";
+    hardware-compatibility: [ "1.0" ];
+
+    stable: {
+        a: {
+            images: ({
+                filename = "my-image-${MACHINE}.ext4.gz";
+                device = "/dev/mmcblk0p2";   // пишем в A
+                type = "raw";
+                compressed = "zlib";
+                properties: {
+                    bootenv: (
+                        ("bootslot", "a"),
+                        ("upgrade_available", "1"),
+                        ("bootcount", "0")
+                    );
+                };
+            });
+        };
+
+        b: {
+            images: ({
+                filename = "my-image-${MACHINE}.ext4.gz";
+                device = "/dev/mmcblk0p3";   // пишем в B
+                type = "raw";
+                compressed = "zlib";
+                properties: {
+                    bootenv: (
+                        ("bootslot", "b"),
+                        ("upgrade_available", "1"),
+                        ("bootcount", "0")
+                    );
+                };
+            });
+        };
+    };
+};

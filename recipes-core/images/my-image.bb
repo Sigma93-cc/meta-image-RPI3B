@@ -19,6 +19,6 @@ IMAGE_INSTALL:append = " \
     u-boot \
 "
 
-IMAGE_FSTYPES:append = " wic"
-
+IMAGE_FSTYPES:append = " wic ext4.gz"
+IMAGE_NAME_SUFFIX = ""
 WKS_FILE = "image.wks"
