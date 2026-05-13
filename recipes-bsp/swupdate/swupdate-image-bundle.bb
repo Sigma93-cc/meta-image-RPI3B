@@ -12,8 +12,7 @@ SRC_URI = " \
 IMAGE_DEPENDS = "my-image"
 
 # images and files that will be included in the .swu image
-SWUPDATE_IMAGES = "my-image"
-SWUPDATE_IMAGES_FSTYPES[my-image] = ".ext4.gz"
+SWUPDATE_IMAGES = "my-image-${MACHINE}.rootfs.ext4.gz"
 SWUPDATE_VERSION = "${DISTRO_VERSION}"
 
 inherit swupdate

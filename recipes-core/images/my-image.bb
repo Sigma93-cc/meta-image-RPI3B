@@ -15,10 +15,11 @@ IMAGE_INSTALL:append = " \
     systemanalyzer \
     qtfbsettings \
     swupdate \
+    swupdate-hwrevision \
     libubootenv-bin \
     u-boot \
 "
 
 IMAGE_FSTYPES:append = " wic ext4.gz"
-IMAGE_NAME_SUFFIX = ""
+IMAGE_FSTYPES:remove = "ext3"
 WKS_FILE = "image.wks"

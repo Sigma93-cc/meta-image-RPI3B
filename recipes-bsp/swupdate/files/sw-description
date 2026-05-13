@@ -2,37 +2,33 @@ software = {
     version = "@@DISTRO_VERSION@@";
     hardware-compatibility: [ "1.0" ];
 
-    stable: {
-        a: {
-            images: ({
-                filename = "my-image-${MACHINE}.ext4.gz";
-                device = "/dev/mmcblk0p2";   // пишем в A
-                type = "raw";
-                compressed = "zlib";
-                properties: {
-                    bootenv: (
-                        ("bootslot", "a"),
-                        ("upgrade_available", "1"),
-                        ("bootcount", "0")
-                    );
-                };
-            });
-        };
+    embedded-script = "
+        function ab_select(image)           
+            local update_part = swupdate.get_bootenv('update_part')
+            local update_slot = swupdate.get_bootenv('update_slot')
+            local bootslot    = swupdate.get_bootenv('bootslot')
+            local bootpart   = swupdate.get_bootenv('bootpart')
 
-        b: {
-            images: ({
-                filename = "my-image-${MACHINE}.ext4.gz";
-                device = "/dev/mmcblk0p3";   // пишем в B
-                type = "raw";
-                compressed = "zlib";
-                properties: {
-                    bootenv: (
-                        ("bootslot", "b"),
-                        ("upgrade_available", "1"),
-                        ("bootcount", "0")
-                    );
-                };
-            });
-        };
-    };
+            print('A/B select: writing to slot ' .. update_slot .. ' (part ' .. update_part .. ')')
+            
+            image.device = '/dev/mmcblk0p' .. update_part
+
+            swupdate.set_bootenv('bootslot',          update_slot)
+            swupdate.set_bootenv('update_slot',       bootslot)
+            swupdate.set_bootenv('bootpart',          update_part)
+            swupdate.set_bootenv('update_part',       bootpart)
+            swupdate.set_bootenv('upgrade_available', '1')
+            swupdate.set_bootenv('bootcount',         '0')
+
+            return true, true   -- (success, install)
+        end
+    ";
+
+    images: ({
+        filename = "my-image-raspberrypi3-64.rootfs.ext4.gz";
+        type = "raw";
+        compressed = "zlib";
+        hook = "ab_select";
+        device = "/dev/null"; 
+    });
 };
