@@ -13,9 +13,11 @@ IMAGE_INSTALL:append = " \
     systemanalyzer \
     qtfbsettings \
     swupdate \
+    swupdate-www \
     swupdate-hwrevision \
     libubootenv-bin \
-    u-boot \    
+    u-boot \   
+    psplash \ 
 "
 
 IMAGE_FSTYPES:append = " wic ext4.gz"
