@@ -7,14 +7,6 @@ IMAGE_BOOT_FILES:append = " waveshare35b-v2.dtbo;overlays/waveshare35b-v2.dtbo"
 
 IMAGE_INSTALL:append = " \
     kernel-module-ads7846 \
-    coreutils \
-    util-linux \
-    bash \
-    findutils \
-    grep \
-    sed \
-    gawk \
-    procps \
     qtbase \
     qtbase-plugins \
     boost \
