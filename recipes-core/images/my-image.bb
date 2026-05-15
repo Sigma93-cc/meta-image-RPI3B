@@ -17,8 +17,16 @@ IMAGE_INSTALL:append = " \
     swupdate-hwrevision \
     libubootenv-bin \
     u-boot \   
-    psplash \ 
+    udevrules \
+    psplash-sigmastudio \
+    dpkg \
 "
+
+IMAGE_FEATURES:append = " \
+    ssh-server-openssh \
+    package-management \
+    splash \
+" 
 
 IMAGE_FSTYPES:append = " wic ext4.gz"
 IMAGE_FSTYPES:remove = "ext3"
