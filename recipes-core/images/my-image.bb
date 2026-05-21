@@ -3,6 +3,8 @@ DESCRIPTION = "Recipe created by A.Sigov"
 LICENSE = "MIT"
 
 require recipes-core/images/core-image-minimal.bb
+
+IMAGE_CLASSES += "extrausers"
 IMAGE_BOOT_FILES:append = " waveshare35b-v2.dtbo;overlays/waveshare35b-v2.dtbo"
 
 IMAGE_INSTALL:append = " \
@@ -19,13 +21,15 @@ IMAGE_INSTALL:append = " \
     u-boot \   
     udevrules \
     psplash-sigmastudio \
-    dpkg \
 "
 
 IMAGE_FEATURES:append = " \
     ssh-server-openssh \
-    package-management \
     splash \
+"
+
+EXTRA_USERS_PARAMS = "\
+    usermod -p '\$6\$i3OWmbAF6TdHU7Fo\$RtnkUHpXXmACXw0wRUUae1Pz9uS5oYBIe5Wlf/d1ied2Jv9tlKcooQ3oXeOp5Apxs2yMwqpfkt4dfvkoHAk5d1' root; \
 " 
 
 IMAGE_FSTYPES:append = " wic ext4.gz"
