@@ -28,9 +28,9 @@ IMAGE_FEATURES:append = " \
     splash \
 "
 
-EXTRA_USERS_PARAMS = "\
-    usermod -p '\$6\$i3OWmbAF6TdHU7Fo\$RtnkUHpXXmACXw0wRUUae1Pz9uS5oYBIe5Wlf/d1ied2Jv9tlKcooQ3oXeOp5Apxs2yMwqpfkt4dfvkoHAk5d1' root; \
-" 
+# EXTRA_USERS_PARAMS = "\
+#     usermod -p '\$6\$i3OWmbAF6TdHU7Fo\$RtnkUHpXXmACXw0wRUUae1Pz9uS5oYBIe5Wlf/d1ied2Jv9tlKcooQ3oXeOp5Apxs2yMwqpfkt4dfvkoHAk5d1' root; \
+# " 
 
 IMAGE_FSTYPES:append = " wic ext4.gz"
 IMAGE_FSTYPES:remove = "ext3"
@@ -44,3 +44,14 @@ add_custom_fstab() {
 /dev/mmcblk0p4   /data   ext4    defaults    0  2
 EOF
 }
+
+TOOLCHAIN_HOST_TASK:append = " \
+     nativesdk-packagegroup-qt5-toolchain-host \   
+"
+TOOLCHAIN_TARGET_TASK:append= " \
+    qtbase-dev \ 
+    qtbase-mkspecs \
+    spdlog-dev \
+    libubootenv-dev \
+    fmt-dev \
+"
