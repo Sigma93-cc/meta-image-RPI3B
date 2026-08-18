@@ -7,6 +7,29 @@ test -n "${bootcount}" || setenv bootcount 0
 test -n "${upgrade_available}" || setenv upgrade_available 0
 test -n "${bootlimit}" || setenv bootlimit 3
 
+if test ${upgrade_available} -eq 1; then
+    if test ${bootcount} -gt ${bootlimit}; then 
+        setenv cur_bootpart ${bootpart}
+        setenv cur_bootslot ${bootslot}
+        setenv bootpart ${update_part}
+        setenv bootslot ${update_slot}
+        setenv update_part ${cur_bootpart}
+        setenv update_slot ${cur_bootslot}
+        setenv upgrade_available 0
+        setenv bootcount 0
+        setenv cur_bootpart
+        setenv cur_bootslot
+        saveenv
+        echo "UpgradeFailed,set activeslot=${bootslot}-${bootpart}"
+    else         
+        setexpr bootcount ${bootcount} + 1        
+        saveenv
+        echo "UpgradeAvailable check, set bootcount=${bootcount} activeslot=${bootslot}-${bootpart}"
+    fi
+else
+    echo "UpgradeNotAvailable, run activeslot=${bootslot}-${bootpart}"
+fi
+
 # Use firmware-supplied FDT
 fdt addr ${fdt_addr}
 

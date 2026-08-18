@@ -21,6 +21,7 @@ IMAGE_INSTALL:append = " \
     u-boot \   
     udevrules \
     psplash-sigmastudio \
+    ttf-dejavu-sans \
 "
 
 IMAGE_FEATURES:append = " \
