@@ -5,16 +5,12 @@ software = {
     embedded-script = "
         function ab_select(image)           
             local update_part = swupdate.get_bootenv('update_part')
-            local update_slot = swupdate.get_bootenv('update_slot')
-            local bootslot    = swupdate.get_bootenv('bootslot')
             local bootpart   = swupdate.get_bootenv('bootpart')
 
-            print('A/B select: writing to slot ' .. update_slot .. ' (part ' .. update_part .. ')')
+            print('A/B select: writing to part ' .. update_part )
             
             image.device = '/dev/mmcblk0p' .. update_part
 
-            swupdate.set_bootenv('bootslot',          update_slot)
-            swupdate.set_bootenv('update_slot',       bootslot)
             swupdate.set_bootenv('bootpart',          update_part)
             swupdate.set_bootenv('update_part',       bootpart)
             swupdate.set_bootenv('upgrade_available', '1')
