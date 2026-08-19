@@ -2,7 +2,12 @@ SUMMARY = "systemAnalyzer recipe"
 DESCRIPTION = "Recipe created by A.Sigov"
 LICENSE = "MIT"
 
-DEPENDS = "qtbase boost spdlog"
+DEPENDS = " \
+    qtbase \
+    boost  \
+    spdlog  \
+    libubootenv \
+"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
@@ -20,7 +25,7 @@ EXTRA_OECMAKE += "-DSYSTEMD_UNIT_DIR=${systemd_system_unitdir}"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fffb4f983a3c2feb6f5daad77d66ed13"
 
-inherit cmake_qt5 systemd
+inherit cmake_qt5 systemd pkgconfig
 
 SYSTEMD_SERVICE:${PN} += " \
     systemanalyzer.service \
