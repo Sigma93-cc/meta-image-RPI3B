@@ -14,5 +14,7 @@ IMAGE_DEPENDS = "my-image"
 # images and files that will be included in the .swu image
 SWUPDATE_IMAGES = "my-image-${MACHINE}.rootfs.ext4.gz"
 SWUPDATE_VERSION = "${DISTRO_VERSION}"
+SWUPDATE_SIGNING = "RSA"
+SWUPDATE_PRIVATE_KEY = "${LAYERDIR_meta-my}/dev-signing-key.pem"
 
 inherit swupdate

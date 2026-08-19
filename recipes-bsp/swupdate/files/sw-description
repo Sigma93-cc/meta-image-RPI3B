@@ -21,10 +21,11 @@ software = {
     ";
 
     images: ({
-        filename = "my-image-raspberrypi3-64.rootfs.ext4.gz";
+        filename = "my-image-@@MACHINE@@.rootfs.ext4.gz";
         type = "raw";
         compressed = "zlib";
         hook = "ab_select";
         device = "/dev/null"; 
+        sha256 = "$swupdate_get_sha256(my-image-@@MACHINE@@.rootfs.ext4.gz)";
     });
 };
