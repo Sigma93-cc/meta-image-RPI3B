@@ -25,6 +25,7 @@ IMAGE_INSTALL:append = " \
 "
 
 IMAGE_FEATURES:append = " \
+    read-only-rootfs \
     ssh-server-openssh \
     splash \
 "
@@ -37,9 +38,10 @@ IMAGE_FSTYPES:append = " wic ext4.gz"
 IMAGE_FSTYPES:remove = "ext3"
 WKS_FILE = "image.wks"
 
-ROOTFS_POSTPROCESS_COMMAND += "add_custom_fstab;"
+ROOTFS_POSTPROCESS_COMMAND += "add_custom_fstab "
 
 add_custom_fstab() {
+    install -d ${IMAGE_ROOTFS}/data
     cat >> ${IMAGE_ROOTFS}/etc/fstab <<EOF
 /dev/mmcblk0p1   /boot   vfat    defaults    0  2
 /dev/mmcblk0p4   /data   ext4    defaults    0  2
