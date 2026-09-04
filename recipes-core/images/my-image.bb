@@ -11,7 +11,6 @@ IMAGE_INSTALL:append = " \
     kernel-module-ads7846 \
     qtbase \
     qtbase-plugins \
-    boost \
     systemanalyzer \
     qtfbsettings \
     swupdate \
@@ -29,6 +28,10 @@ IMAGE_FEATURES:append = " \
     ssh-server-openssh \
     splash \
 "
+
+PACKAGE_EXCLUDE = " \
+    udev-hwdb \
+" 
 
 IMAGE_FSTYPES:append = " wic ext4.gz"
 IMAGE_FSTYPES:remove = "ext3"
