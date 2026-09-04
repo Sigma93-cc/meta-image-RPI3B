@@ -1,0 +1,15 @@
+[Unit]
+Description=Unit makes /data/log directory to journalctl
+RequiresMountsFor=/data
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=mkdir -p /data/log/journal
+ExecStartPre=chmod 2755 /data/log/journal
+ExecStartPre=chgrp systemd-journal /data/log/journal
+ExecStart=systemctl restart systemd-journald
+ExecStartPost=journalctl --flush
+
+[Install]
+WantedBy=multi-user.target

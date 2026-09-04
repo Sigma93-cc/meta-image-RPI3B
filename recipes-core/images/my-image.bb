@@ -30,18 +30,18 @@ IMAGE_FEATURES:append = " \
     splash \
 "
 
-# EXTRA_USERS_PARAMS = "\
-#     usermod -p '\$6\$i3OWmbAF6TdHU7Fo\$RtnkUHpXXmACXw0wRUUae1Pz9uS5oYBIe5Wlf/d1ied2Jv9tlKcooQ3oXeOp5Apxs2yMwqpfkt4dfvkoHAk5d1' root; \
-# " 
-
 IMAGE_FSTYPES:append = " wic ext4.gz"
 IMAGE_FSTYPES:remove = "ext3"
 WKS_FILE = "image.wks"
 
-ROOTFS_POSTPROCESS_COMMAND += "add_custom_fstab "
+ROOTFS_POSTPROCESS_COMMAND += "add_custom_fstab create_log_simlynk "
+
+create_log_simlynk() {
+    ln -sfn /data/log ${IMAGE_ROOTFS}/var/log
+}
 
 add_custom_fstab() {
-    install -d ${IMAGE_ROOTFS}/data
+    install -d ${IMAGE_ROOTFS}/data    
     cat >> ${IMAGE_ROOTFS}/etc/fstab <<EOF
 /dev/mmcblk0p1   /boot   vfat    defaults    0  2
 /dev/mmcblk0p4   /data   ext4    defaults    0  2
