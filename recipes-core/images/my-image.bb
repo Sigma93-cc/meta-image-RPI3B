@@ -37,7 +37,15 @@ IMAGE_FSTYPES:append = " wic ext4.gz"
 IMAGE_FSTYPES:remove = "ext3"
 WKS_FILE = "image.wks"
 
-ROOTFS_POSTPROCESS_COMMAND += "add_custom_fstab create_log_simlynk "
+ROOTFS_POSTPROCESS_COMMAND += "\
+    add_custom_fstab \
+    create_log_simlynk \
+    ${@bb.utils.contains("IMAGE_FEATURES", "debug-tweaks", "drop_ssh_hardening ", "", d)} \
+"
+
+drop_ssh_hardening() {
+    rm -f ${IMAGE_ROOTFS}/etc/ssh/sshd_config.d/20-hardening.conf
+}
 
 create_log_simlynk() {
     ln -sfn /data/log ${IMAGE_ROOTFS}/var/log
