@@ -1,0 +1,14 @@
+#!/bin/sh
+i=0
+while [ $i -lt 100 ]; do
+    for d in /sys/class/graphics/fb*; do
+        [ -r "$d/name" ] || continue
+        read -r n < "$d/name"
+        if [ "$n" = "@@PANEL_FB_DRIVER@@" ]; then
+            exec /usr/bin/psplash --fbdev "${d##*/fb}"
+        fi
+    done
+    i=$((i+1))
+    sleep 0.05
+done
+exit 1
