@@ -5,10 +5,8 @@ LICENSE = "MIT"
 require recipes-core/images/core-image-minimal.bb
 
 IMAGE_CLASSES += "extrausers"
-IMAGE_BOOT_FILES:append = " waveshare35b-v2.dtbo;overlays/waveshare35b-v2.dtbo"
 
 IMAGE_INSTALL:append = " \
-    kernel-module-ads7846 \
     qtbase \
     qtbase-plugins \
     systemanalyzer \

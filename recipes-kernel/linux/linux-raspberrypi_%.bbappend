@@ -1,4 +1,8 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
-SRC_URI += "file://enable-display.cfg"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:${THISDIR}/common:"
+
+SRC_URI += "\
+    file://${PANEL_KCONFIG_FRAG} \ 
+    file://enable_spi.cfg \
+" 
 
 RRECOMMENDS:${KERNEL_PACKAGE_NAME}-base = ""

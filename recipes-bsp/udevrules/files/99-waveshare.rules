@@ -1,1 +1,0 @@
-SUBSYSTEM=="graphics", DRIVERS=="fb_ili9486", SYMLINK+="mainscreen", TAG+="systemd"

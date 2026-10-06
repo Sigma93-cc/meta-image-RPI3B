@@ -2,7 +2,7 @@ SUMMARY = "QT5 default platform config installer"
 DESCRIPTION = "Recipe created by A.Sigov"
 LICENSE = "CLOSED"
 
-inherit allarch
+PACKAGE_ARCH = "${MACHINE_ARCH}" 
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 

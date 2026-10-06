@@ -1,0 +1,10 @@
+PANEL_FB_DRIVER     = "fb_ili9486"
+PANEL_TOUCH_DRIVER  = "ads7846"
+PANEL_DTOVERLAY     = "waveshare35b-v2"
+PANEL_TOUCH_ROTATE  = "90"
+PANEL_FB_SYMLINK    = "mainscreen"
+PANEL_KCONFIG_FRAG  = "waveshare35b.cfg"
+
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS += " \
+    kernel-module-${PANEL_TOUCH_DRIVER} \
+"
