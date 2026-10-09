@@ -36,7 +36,7 @@ fi
 
 # Build bootargs with parameterized root
 setenv machine_id 0000000000005569${serial#}
-setenv bootargs "coherent_pool=1M 8250.nr_uarts=1 cgroup_disable=memory vc_mem.mem_base=0x3ec00000 vc_mem.mem_size=0x40000000 dwc_otg.lpm_enable=0 console=ttyAMA0,115200 root=/dev/mmcblk0p${bootpart} rootfstype=ext4 rootwait logo.nologo net.ifnames=0 systemd.machine_id=${machine_id} panic=5 ro"
+setenv bootargs "coherent_pool=1M 8250.nr_uarts=1 cgroup_disable=memory vc_mem.mem_base=0x3ec00000 vc_mem.mem_size=0x40000000 dwc_otg.lpm_enable=0 console=ttyAMA0,115200 root=/dev/mmcblk0p${bootpart} rootfstype=ext4 rootwait logo.nologo net.ifnames=0 systemd.machine_id=${machine_id} panic=5 watchdog.open_timeout=180 ro"
 echo "--> Setting machineid: ${machine_id}"
 setenv machine_id
 

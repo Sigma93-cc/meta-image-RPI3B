@@ -5,6 +5,7 @@ inherit systemd
 SRC_URI += "\
     file://staticip.conf \
     file://10-logs.conf \
+    file://10-watchdog.conf \
     file://logsmaker.service \
 "
 
@@ -14,12 +15,14 @@ do_install:append(){
     install -d ${D}${systemd_system_unitdir}
     install -m 0644 ${WORKDIR}/staticip.conf ${D}${sysconfdir}/systemd/network/80-wired.network.d/
     install -m 0644 ${WORKDIR}/10-logs.conf ${D}${systemd_unitdir}/journald.conf.d/
+    install -m 0644 ${WORKDIR}/10-watchdog.conf ${D}${systemd_unitdir}/system.conf.d/
     install -m 0644 ${WORKDIR}/logsmaker.service ${D}${systemd_system_unitdir}
 }
 
 FILES:${PN} += " \
     ${sysconfdir}/systemd/network/80-wired.network.d/staticip.conf \
     ${systemd_unitdir}/journald.conf.d/10-logs.conf \
+    ${systemd_unitdir}/system.conf.d/10-watchdog.conf \
 "
 
 SYSTEMD_SERVICE:${PN} += " \
