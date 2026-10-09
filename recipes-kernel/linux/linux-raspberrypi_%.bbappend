@@ -4,5 +4,3 @@ SRC_URI += "\
     file://${PANEL_KCONFIG_FRAG} \ 
     file://enable_spi.cfg \
 " 
-
-RRECOMMENDS:${KERNEL_PACKAGE_NAME}-base = ""

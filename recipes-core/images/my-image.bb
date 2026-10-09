@@ -35,6 +35,7 @@ PACKAGE_EXCLUDE = " \
 IMAGE_FSTYPES:append = " wic ext4.gz"
 IMAGE_FSTYPES:remove = "ext3"
 WKS_FILE = "image.wks"
+WIC_CREATE_EXTRA_ARGS += "--no-fstab-update"
 
 ROOTFS_POSTPROCESS_COMMAND += "\
     add_custom_fstab \
@@ -53,7 +54,6 @@ create_log_simlynk() {
 add_custom_fstab() {
     install -d ${IMAGE_ROOTFS}/data    
     cat >> ${IMAGE_ROOTFS}/etc/fstab <<EOF
-/dev/mmcblk0p1   /boot   vfat    defaults    0  2
 /dev/mmcblk0p4   /data   ext4    defaults    0  2
 EOF
 }
