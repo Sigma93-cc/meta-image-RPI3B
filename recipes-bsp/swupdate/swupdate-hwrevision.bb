@@ -1,6 +1,8 @@
 DESCRIPTION = "SW Update hwrevision file generator"
 LICENSE = "CLOSED"
 
+PACKAGE_ARCH = "${MACHINE_ARCH}"
+
 HW_REVISION ?= "1.0"
 
 do_install(){

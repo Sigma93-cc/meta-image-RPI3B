@@ -19,6 +19,7 @@ IMAGE_INSTALL:append = " \
     udevrules \
     psplash-sigmastudio \
     ttf-dejavu-sans \
+    systemd-analyze \
 "
 
 IMAGE_FEATURES:append = " \
