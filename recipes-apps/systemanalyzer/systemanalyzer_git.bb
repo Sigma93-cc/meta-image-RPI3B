@@ -15,7 +15,7 @@ SRC_URI = " \
     git://github.com/Sigma93-cc/systemAnalyzator.git;protocol=https;branch=develop \
     file://after_psplash.conf \
 "
-SRCREV = "41064e42f270484bad05b3993dee52cdbd57df5b"
+SRCREV = "46263b0e9b798f2e5096d1a3fab354ec7d29d621"
 
 PV = "1.0.0+git${SRCPV}"
 

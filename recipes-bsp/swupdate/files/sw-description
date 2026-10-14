@@ -4,19 +4,22 @@ software = {
 
     embedded-script = "
         function ab_select(image)           
-            local update_part = swupdate.get_bootenv('update_part')
-            local bootpart   = swupdate.get_bootenv('bootpart')
-
-            print('A/B select: writing to part ' .. update_part )
-            
-            image.device = '/dev/mmcblk0p' .. update_part
-
-            swupdate.set_bootenv('bootpart',          update_part)
-            swupdate.set_bootenv('update_part',       bootpart)
+            local f = io.open('/proc/cmdline')
+            if not f then return false, image end
+            local cur = f:read('*a'):match('root=/dev/mmcblk0p(%d+)')
+            f:close()
+            if cur ~= '2' and cur ~= '3' then
+                print('A/B select: running slot unknown, refusing')
+                return false, image
+            end
+            local target = (cur == '2') and '3' or '2'
+            print('A/B select: running ' .. cur .. ', writing to ' .. target)
+            image.device = '/dev/mmcblk0p' .. target
+            swupdate.set_bootenv('bootpart', target)
+            swupdate.set_bootenv('update_part', cur)
             swupdate.set_bootenv('upgrade_available', '1')
-            swupdate.set_bootenv('bootcount',         '0')
-
-            return true, image   -- (success, install)
+            swupdate.set_bootenv('bootcount', '0')
+            return true, image
         end
     ";
 
